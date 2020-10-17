@@ -9,10 +9,10 @@ lb "{"
 rb "}"
 comma ","
 end_stm ";"
-for for
-while while
-if if
-else else
+for "for"
+while "while"
+if "if"
+else "else"
 or_op "||"
 and_op "&&"
 eq_op "=="
@@ -31,6 +31,8 @@ decr_op "--"
 assign_op [=(*=)(/=)(%=)(+=)(-=)(&=)(|=)]
 print "print"
 input "input"
+ascend "ascend"
+descend "descend"
 altitude "getAltitude"
 temperature "getTemp"
 acceleration "getAcc"
@@ -82,6 +84,8 @@ sentence {identifier}*
 {decr_op} printf("DECR_OP ");
 {print} printf("PRINT ");
 {input} printf("INPUT ");
+{ascend} printf("ASCEND_FUNC ");
+{descend} prinf("DESCEND_FUNC ");
 {altitude} printf("ALTITUDE_FUNC ");
 {temperature} printf("TEMPERTAURE_FUNC ");
 {acceleration} printf("ACCELERATION_FUNC ");

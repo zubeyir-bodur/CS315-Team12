@@ -9,6 +9,10 @@ lb "{"
 rb "}"
 comma ","
 end_stm ";"
+for for
+while while
+if if
+else else
 or_op "||"
 and_op "&&"
 eq_op "=="
@@ -56,6 +60,10 @@ sentence {identifier}*
 {rp} printf("RP ");
 {comma} printf("COMMA ");
 {end_stm} printf("END_STM ");
+{for} printf("FOR ");
+{while} prinf("WHILE ");
+{if} printf("IF ");
+{else} printf("ELSE ");
 {assign_op} printf("ASSIGN_OP ");
 {or_op} printf("OR_OP ");
 {and_op} printf("AND_OP ");

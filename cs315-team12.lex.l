@@ -1,7 +1,4 @@
 %option main
-digit   [0-9]
-nonzero_digit [1-9]
-sign    [+-]
 comment "#"
 lp "("
 rp ")"
@@ -40,12 +37,22 @@ camera "toggleCam"
 photo "takePhoto"
 timestamp "getTime"
 connect "connect"
+sign [+-]
+digit [0-9]
+nonzero_digit [1-9]
 numeral  {nonzero_digit}{digit}*
-integer {sign}?{numeral}*
-double {sign}?{numaral}(\.)?{digit}+
-boolean ["true""false"]
-string \"(\\.|[^"\\])*\"
-literal {integer}|{double}|{boolean}|{string}
+true "true"
+false "false"
+int_literal {sign}?{numeral}*
+double_literal {sign}?{numeral}(\.)?{digit}+
+bool_literal {true}|{false}
+string_literal \"(\\.|[^"\\])*\"
+literal {int_literal}|{double_literal}|{bool_literal}|{string_literal}
+type_int "int"
+type_double "double"
+type_bool "bool"
+type_string "string"
+type {type_int}|{type_double}|{type_bool}|{type_string}
 lowercase_let [a-z]
 uppercase_let [A-Z]
 letter {lowercase_let}|{uppercase_let}
@@ -54,10 +61,16 @@ identifier {letter}{ident_chars}*
 sentence {identifier}*
 %%
 {comment} printf("COMMENT ");
-{integer} printf("INT ");
-{double} printf("DOUBLE ");
-{boolean} printf("BOOL ");
-{string} printf("STRING ");
+{int_literal} printf("INT_LITERAL ");
+{double_literal} printf("DOUBLE_LITERAL ");
+{true} printf("TRUE ");
+{false} printf("FALSE ");
+{bool_literal} printf("BOOL_LITERAL ");
+{string_literal} printf("STRING_LITERAL ");
+{type_int} printf("INT_TYPE ");
+{type_double} printf("DOUBLE_TYPE ");
+{type_bool} printf("BOOL_TYPE ");
+{type_string} printf("STRING_TYPE ");
 {lp} printf("LP ");
 {rp} printf("RP ");
 {comma} printf("COMMA ");

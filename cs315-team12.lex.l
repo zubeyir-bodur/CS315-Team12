@@ -47,7 +47,7 @@ int_literal {sign}?{numeral}+
 double_literal {sign}?{numeral}(\.)?{digit}+
 bool_literal {true}|{false}
 string_literal \"(\\.|[^"\\])*\"
-comment \#(\\.|[^"\\])*\#
+comment \#[^#]*\#
 literal {int_literal}|{double_literal}|{bool_literal}|{string_literal}
 type_int "int"
 type_double "double"
@@ -59,7 +59,6 @@ uppercase_let [A-Z]
 letter {lowercase_let}|{uppercase_let}
 ident_chars {letter}|{digit}|"-"|"_"
 identifier {letter}{ident_chars}*
-sentence {identifier}*
 %%
 {comment} printf("COMMENT ");
 {int_literal} printf("INT_LITERAL ");
@@ -109,5 +108,4 @@ sentence {identifier}*
 {lb} printf("LB ");
 {rb} printf("RB ");
 {identifier} printf("IDENTIFIER ");
-{sentence} printf("SENTENCE ");
 %%

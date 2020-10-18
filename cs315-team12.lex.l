@@ -76,7 +76,7 @@ sentence {identifier}*
 {comma} printf("COMMA ");
 {end_stm} printf("END_STM ");
 {for} printf("FOR ");
-{while} prinf("WHILE ");
+{while} printf("WHILE ");
 {if} printf("IF ");
 {else} printf("ELSE ");
 {assign_op} printf("ASSIGN_OP ");

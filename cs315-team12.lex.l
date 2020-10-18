@@ -110,4 +110,6 @@ sentence {identifier}*
 {connect} printf("CONNECT_FUNC ");
 {lb} printf("LB ");
 {rb} printf("RB ");
+{identifier} printf("IDENTIFIER ");
+{sentence} printf("SENTENCE ");
 %%

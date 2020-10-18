@@ -28,6 +28,7 @@ decr_op "--"
 assign_op [=(*=)(/=)(%=)(+=)(-=)(&=)(|=)]
 print "print"
 input "input"
+main "main"
 ascend "ascend"
 descend "descend"
 altitude "getAltitude"
@@ -97,6 +98,7 @@ sentence {identifier}*
 {decr_op} printf("DECR_OP ");
 {print} printf("PRINT ");
 {input} printf("INPUT ");
+{main} printf("MAIN ");
 {ascend} printf("ASCEND_FUNC ");
 {descend} printf("DESCEND_FUNC ");
 {altitude} printf("ALTITUDE_FUNC ");

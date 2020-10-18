@@ -64,8 +64,6 @@ sentence {identifier}*
 {comment} printf("COMMENT ");
 {int_literal} printf("INT_LITERAL ");
 {double_literal} printf("DOUBLE_LITERAL ");
-{true} printf("TRUE ");
-{false} printf("FALSE ");
 {bool_literal} printf("BOOL_LITERAL ");
 {string_literal} printf("STRING_LITERAL ");
 {type_int} printf("INT_TYPE ");

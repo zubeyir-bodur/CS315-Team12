@@ -39,8 +39,7 @@ timestamp "getTime"
 connect "connect"
 sign [+-]
 digit [0-9]
-nonzero_digit [1-9]
-numeral  {nonzero_digit}{digit}*
+numeral {digit}+
 true "true"
 false "false"
 int_literal {sign}?{numeral}+

@@ -98,7 +98,7 @@ sentence {identifier}*
 {print} printf("PRINT ");
 {input} printf("INPUT ");
 {ascend} printf("ASCEND_FUNC ");
-{descend} prinf("DESCEND_FUNC ");
+{descend} printf("DESCEND_FUNC ");
 {altitude} printf("ALTITUDE_FUNC ");
 {temperature} printf("TEMPERTAURE_FUNC ");
 {acceleration} printf("ACCELERATION_FUNC ");

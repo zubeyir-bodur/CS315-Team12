@@ -1,5 +1,4 @@
 %option main
-comment "#"
 lp "("
 rp ")"
 lb "{"
@@ -48,6 +47,7 @@ int_literal {sign}?{numeral}+
 double_literal {sign}?{numeral}(\.)?{digit}+
 bool_literal {true}|{false}
 string_literal \"(\\.|[^"\\])*\"
+comment \#(\\.|[^"\\])*\#
 literal {int_literal}|{double_literal}|{bool_literal}|{string_literal}
 type_int "int"
 type_double "double"

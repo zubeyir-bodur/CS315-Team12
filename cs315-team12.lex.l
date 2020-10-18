@@ -25,7 +25,7 @@ div_op "/"
 mod_op "%"
 incr_op "++"
 decr_op "--"
-assign_op [=(*=)(/=)(%=)(+=)(-=)(&=)(|=)]
+assign_op "="
 print "print"
 input "input"
 main "main"
@@ -44,7 +44,7 @@ nonzero_digit [1-9]
 numeral  {nonzero_digit}{digit}*
 true "true"
 false "false"
-int_literal {sign}?{numeral}*
+int_literal {sign}?{numeral}+
 double_literal {sign}?{numeral}(\.)?{digit}+
 bool_literal {true}|{false}
 string_literal \"(\\.|[^"\\])*\"

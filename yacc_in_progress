@@ -55,7 +55,7 @@
 
 main: MAIN LP RP LB statements RB
 
-statements:	statement|statements statement
+statements: statement|statements statement
 
 statement: statement_list END_STM 
 
@@ -65,7 +65,7 @@ statement_list:	expression_stm | compound_stm | if_stm | iteration_stm
 			
 comment_line: COMMENT
 			
-expression_stm: expression_stm
+expression_stm: expression
 
 expression: assignment_expr
 

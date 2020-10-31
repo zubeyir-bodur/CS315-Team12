@@ -59,11 +59,10 @@ main: MAIN LP RP LB statements RB
 
 statements:	statement|statements statement
 
-statement: statement_list END_STM 
+statement: statement_list END_STM | comment_line | if_stm | iteration_stm | function_declaration
 
-statement_list:	expression_stm | compound_stm | if_stm | iteration_stm
-			| comment_line | print_statement | input_statement |function_call
-			| function_declaration | predefined | declaration_statement
+statement_list:	expression_stm | compound_stm | print_statement | input_statement |function_call
+			| predefined | declaration_statement
 			
 comment_line: COMMENT
 			
@@ -125,7 +124,7 @@ if_alone: IF LP logical_expr RP LB statements RB
 
 iteration_stm : for_stm | while_stm
 
-for_stm: FOR LP assignment_expr END_STM logical_expr END_STM assignment_expr END_STM RP LB statements RB
+for_stm: FOR LP assignment_expr END_STM logical_expr END_STM assignment_expr RP LB statements RB
 
 while_stm: WHILE LP logical_expr RP LB statements RB
 

@@ -57,11 +57,11 @@ main: MAIN LP RP LB statements RB
 
 statements: statement|statements statement
 
-statement: statement_list END_STM 
+statement: statement_list END_STM | comment_line 
 
 statement_list:	expression_stm | compound_stm | if_stm | iteration_stm
-			| comment_line | print_statement | input_statement |function_call
-			| function_declaration | predefined | declaration_statement
+		| print_statement | input_statement |function_call
+		| function_declaration | predefined | declaration_statement
 			
 comment_line: COMMENT
 			
@@ -151,7 +151,7 @@ function_body: statement | function_body statement
 predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERTAURE_FUNC | ACCELERATION_FUNC
 			| CAMERA_FUNC | PHOTO_FUNC | TIME_FUNC | CONNECT_FUNC
 			
-declaration_statement: type identifiers END_STM
+declaration_statement: type identifiers
 
 identifiers: IDENTIFIER | IDENTIFIER COMMA IDENTIFIER
 

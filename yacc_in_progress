@@ -48,20 +48,22 @@
 %token RB ;
 %token IDENTIFIER ;
 
-%start main
+%start program
 %left ASSIGN_OP
 
 %%
 
+program: main
+
 main: MAIN LP RP LB statements RB
 
-statements: statement|statements statement
+statements:	statement|statements statement
 
-statement: statement_list END_STM | comment_line 
+statement: statement_list END_STM 
 
 statement_list:	expression_stm | compound_stm | if_stm | iteration_stm
-		| print_statement | input_statement |function_call
-		| function_declaration | predefined | declaration_statement
+			| comment_line | print_statement | input_statement |function_call
+			| function_declaration | predefined | declaration_statement
 			
 comment_line: COMMENT
 			
@@ -70,6 +72,7 @@ expression_stm: expression
 expression: assignment_expr
 
 assignment_expr: IDENTIFIER ASSIGN_OP logical_expr
+				| declaration_statement ASSIGN_OP logical_expr
 
 logical_expr: logical_expr OR_OP and_expr 
 				| and_expr 
@@ -107,6 +110,8 @@ postfix_expr: primary_expr
 primary_expr: LP logical_expr RP
 			| IDENTIFIER
 			| literal
+			| function_call
+			| predefined
 			
 literal: INT_LITERAL | DOUBLE_LITERAL | BOOL_LITERAL | STRING_LITERAL
 
@@ -116,13 +121,13 @@ if_stm: if_alone | if_else
 
 if_else: if_alone ELSE LB statements RB
 
-if_alone: IF LP expression_stm END_STM RP LB statements RB
+if_alone: IF LP logical_expr RP LB statements RB
 
 iteration_stm : for_stm | while_stm
 
-for_stm: FOR LP expression_stm END_STM expression_stm END_STM expression_stm END_STM RP LB statements RB
+for_stm: FOR LP assignment_expr END_STM logical_expr END_STM assignment_expr END_STM RP LB statements RB
 
-while_stm: WHILE LP expression_stm END_STM RP LB statements RB
+while_stm: WHILE LP logical_expr RP LB statements RB
 
 print_statement: PRINT LP outputs RP
 
@@ -151,7 +156,7 @@ function_body: statement | function_body statement
 predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERTAURE_FUNC | ACCELERATION_FUNC
 			| CAMERA_FUNC | PHOTO_FUNC | TIME_FUNC | CONNECT_FUNC
 			
-declaration_statement: type identifiers
+declaration_statement: type identifiers 
 
 identifiers: IDENTIFIER | IDENTIFIER COMMA IDENTIFIER
 
@@ -167,7 +172,7 @@ void yyerror(char *s) {
 int main(void){
  yyparse();
 if(yynerrs < 1){
-		printf("Parsing is successful. \n");
+		printf("Parsing: SUCCESSFUL!\n");
 	}
  return 0;
 }

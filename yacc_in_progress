@@ -167,7 +167,7 @@ void yyerror(char *s) {
 int main(void){
  yyparse();
 if(yynerrs < 1){
-		printf("Parsing: SUCCESSFUL!\n");
+		printf("Parsing is successful. \n");
 	}
  return 0;
 }

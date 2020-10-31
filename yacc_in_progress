@@ -45,7 +45,7 @@ extern int yylineno;
 %token DESCEND_FUNC ;
 %token INCL_FUNC ;
 %token ALTITUDE_FUNC ;
-%token TEMPERTAURE_FUNC ;
+%token TEMPERATURE_FUNC ;
 %token ACCELERATION_FUNC ;
 %token CAMERA_FUNC ;
 %token PHOTO_FUNC ;
@@ -159,7 +159,7 @@ parameter: type IDENTIFIER
 
 function_body: statement | function_body statement
 	
-predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERTAURE_FUNC | ACCELERATION_FUNC
+predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERATURE_FUNC | ALTITUDE_FUNC | ACCELERATION_FUNC
 			| CAMERA_FUNC | PHOTO_FUNC | TIME_FUNC | CONNECT_FUNC
 			
 declaration_statement: type identifiers 

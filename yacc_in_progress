@@ -1,3 +1,10 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+int yylex(void);
+void yyerror(char* s);
+extern int yylineno;
+%}
 %token COMMENT ;
 %token INT_LITERAL ;
 %token DOUBLE_LITERAL ;
@@ -71,7 +78,7 @@ expression_stm: expression
 expression: assignment_expr
 
 assignment_expr: IDENTIFIER ASSIGN_OP logical_expr
-				| declaration_statement ASSIGN_OP logical_expr
+				| type IDENTIFIER ASSIGN_OP logical_expr
 
 logical_expr: logical_expr OR_OP and_expr 
 				| and_expr 
@@ -171,7 +178,7 @@ void yyerror(char *s) {
 int main(void){
  yyparse();
 if(yynerrs < 1){
-		printf("Parsing: SUCCESSFUL!\n");
+		printf("Parsing is successful. \n");
 	}
  return 0;
 }

@@ -53,14 +53,22 @@
 %token IDENTIFIER ;
 
 %start program
-%nonassoc ASSIGN_OP ;
+%right ASSIGN_OP ;
 %left  OR_OP ;
 %left  AND_OP ;
-%left  EQ_OP NEQ_OP;
-%left  LT_OP LE_OP GT_OP GE_OP;
-%left ADD_OP SUB_OP;
-%left MULT_OP DIV_OP MOD_OP;
-%right INCR_OP DECR_OP;
+%left  EQ_OP ;
+%left  NEQ_OP ;
+%left  LT_OP ;
+%left  LE_OP ;
+%left GT_OP ;
+%left GE_OP ;
+%left ADD_OP ;
+%left SUB_OP ;
+%left MULT_OP ;
+%left DIV_OP ;
+%left MOD_OP ;
+%right INCR_OP ;
+%right DECR_OP ;
 
 %%
 
@@ -68,11 +76,11 @@ program: main
 
 main: MAIN LP RP LB statements RB
 
-statements: statement | statements statement
+statements: statement|statements statement
 
 statement:  comment_line | if_stm | iteration_stm | function_declaration | statement_list END_STM
 
-statement_list:	expression_stm | compound_stm | print_statement | input_statement | function_call
+statement_list:	expression_stm | compound_stm | print_statement | input_statement |function_call
 			| predefined | prefix_expr | declaration_statement 
 			
 comment_line: COMMENT
@@ -82,10 +90,10 @@ expression_stm: expression
 expression: assignment_expr
 
 assignment_expr: IDENTIFIER ASSIGN_OP logical_expr
-			| type IDENTIFIER ASSIGN_OP logical_expr
+				| type IDENTIFIER ASSIGN_OP logical_expr
 
 logical_expr: logical_expr OR_OP and_expr 
-			| and_expr 
+				| and_expr 
 				
 and_expr: and_expr AND_OP equality_expr
 			| equality_expr
@@ -141,7 +149,7 @@ while_stm: WHILE LP logical_expr RP LB statements RB
 
 print_statement: PRINT LP outputs RP
 
-outputs: output | outputs COMMA output 
+outputs: output | outputs output 
 
 output: literal | function_call | predefined | IDENTIFIER
 
@@ -149,13 +157,13 @@ input_statement: INPUT LP user_prompt RP
 
 user_prompt: STRING_LITERAL | IDENTIFIER
 
-function_call: IDENTIFIER LP argument_list RP | IDENTIFIER LP RP | predefined
+function_call: IDENTIFIER LP argument_list RP | IDENTIFIER LP RP | predefined LP RP | predefined LP literal RP
 
 argument_list: literal | IDENTIFIER | literal COMMA argument_list
 			| IDENTIFIER COMMA argument_list
 
 function_declaration: type IDENTIFIER LP parameter_list RP LB function_body RB
-			| type IDENTIFIER LP RP LB function_body RB
+					| type IDENTIFIER LP RP LB function_body RB
 					
 parameter_list: parameter | parameter_list COMMA parameter
 
@@ -163,19 +171,7 @@ parameter: type IDENTIFIER
 
 function_body: statement | function_body statement
 	
-predefined: INCL_FUNC LP RP 
-			| ASCEND_FUNC LP DOUBLE_LITERAL RP
-			| ASCEND_FUNC LP IDENTIFIER RP
-			| DESCEND_FUNC LP DOUBLE_LITERAL RP
-			| DESCEND_FUNC LP IDENTIFIER RP
-			| TEMPERATURE_FUNC LP RP
-			| ALTITUDE_FUNC LP RP 
-			| ACCELERATION_FUNC LP RP 
-			| CAMERA_FUNC LP BOOL_LITERAL RP
-			| CAMERA_FUNC LP IDENTIFIER RP
-			| PHOTO_FUNC LP RP 
-			| TIME_FUNC LP RP 
-			| CONNECT_FUNC LP RP
+predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERATURE_FUNC | ALTITUDE_FUNC |                       ACCELERATION_FUNC | CAMERA_FUNC | PHOTO_FUNC | TIME_FUNC | CONNECT_FUNC
 			
 declaration_statement: type identifiers 
 
@@ -187,15 +183,12 @@ type: INT_TYPE | DOUBLE_TYPE | BOOL_TYPE | STRING_TYPE
 #include "lex.yy.c"
 int line_no;
 int state = 0;
-int main (void) {
-	yyparse();
-    	if(state == 0) {
-        	printf("Parsing is successfully completed.\n");
-    	}
-	return 0;
+int main (void){
+    yyparse();
+    if(state == 0){
+                printf("Parsing is successfully completed.\n");
+     }
+     return 0;
 }
 
-void yyerror( char* s ) {
-	state = -1;
-	fprintf( stderr, "%d: %s\n",line_no+1,s);
-}
+void yyerror( char *s ) { state = -1; fprintf( stderr, "%d: %s\n",line_no+1,s); }

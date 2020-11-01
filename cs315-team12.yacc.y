@@ -181,7 +181,7 @@ predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERATURE_FUNC | ALTITUDE
 			
 declaration_statement: type identifiers 
 
-identifiers: IDENTIFIER | IDENTIFIER COMMA IDENTIFIER
+identifiers: IDENTIFIER | identifiers COMMA IDENTIFIER
 
 type: INT_TYPE | DOUBLE_TYPE | BOOL_TYPE | STRING_TYPE
 

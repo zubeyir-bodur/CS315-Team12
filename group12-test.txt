@@ -1,0 +1,31 @@
+main() {
+	connect();	
+	int limit_temp, limit_alt;
+	bool test = true;
+	#In celcius and meters respectively#
+	# (to prevent damages to the hardware)#
+	limit_temp = -60; 
+	limit_alt = 40000;
+	while(getAltitude()>limit_alt || getTemp()<limit_temp){
+		if(getAltitude()>limit_alt){
+			descend(1000);
+		}
+	}
+	int inclination, acceleration;
+	if(getAltitude()<limit_alt && getTemp>limit_temp){
+		toggleCam(true);
+		takePhoto();
+		toggleCam(false);
+		if(test) {
+			inclination = getInclination();
+		}
+		else {
+			
+			acceleration = getAcceleration();
+		}
+		
+	}
+	int a = 1 + 2 * 3 + (4 + (5 * 6) );
+
+}
+

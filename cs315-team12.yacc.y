@@ -56,7 +56,23 @@ extern int yylineno;
 %token IDENTIFIER ;
 
 %start program
-%left ASSIGN_OP
+
+%right ASSIGN_OP ;
+%left  OR_OP ;
+%left  AND_OP ;
+%left  EQ_OP ;
+%left  NEQ_OP ;
+%left  LT_OP ;
+%left  LE_OP ;
+%left GT_OP ;
+%left GE_OP ;
+%left ADD_OP ;
+%left SUB_OP ;
+%left MULT_OP ;
+%left DIV_OP ;
+%left MOD_OP ;
+%right INCR_OP ;
+%right DECR_OP ;
 
 %%
 

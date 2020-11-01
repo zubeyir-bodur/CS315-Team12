@@ -100,7 +100,7 @@ identifier {letter}{ident_chars}*
 {descend} return DESCEND_FUNC ;
 {inclination} return INCL_FUNC;
 {altitude} return ALTITUDE_FUNC ;
-{temperature} return TEMPERTAURE_FUNC ;
+{temperature} return TEMPERATURE_FUNC ;
 {acceleration} return ACCELERATION_FUNC ;
 {camera} return CAMERA_FUNC ;
 {photo} return PHOTO_FUNC ;

@@ -57,7 +57,8 @@ extern int yylineno;
 
 %start program
 
-%right ASSIGN_OP ;
+%nonassoc ASSIGN_OP ;
+
 %left  OR_OP ;
 %left  AND_OP ;
 %left  EQ_OP ;

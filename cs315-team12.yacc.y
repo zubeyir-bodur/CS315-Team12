@@ -162,7 +162,7 @@ input_statement: INPUT LP user_prompt RP
 
 user_prompt: STRING_LITERAL | IDENTIFIER
 
-function_call: IDENTIFIER LP argument_list RP | IDENTIFIER LP RP
+function_call: IDENTIFIER LP argument_list RP | IDENTIFIER LP RP | predefined LP RP
 
 argument_list: literal | IDENTIFIER | literal COMMA argument_list
 			| IDENTIFIER COMMA argument_list

@@ -1,3 +1,7 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
 %token COMMENT ;
 %token INT_LITERAL ;
 %token DOUBLE_LITERAL ;
@@ -145,8 +149,7 @@ input_statement: INPUT LP user_prompt RP
 
 user_prompt: STRING_LITERAL | IDENTIFIER
 
-function_call: IDENTIFIER LP argument_list RP | IDENTIFIER LP RP | predefined LP RP
-			| predefined LP literal RP | predefined LP IDENTIFIER RP
+function_call: IDENTIFIER LP argument_list RP | IDENTIFIER LP RP | predefined
 
 argument_list: literal | IDENTIFIER | literal COMMA argument_list
 			| IDENTIFIER COMMA argument_list
@@ -160,8 +163,19 @@ parameter: type IDENTIFIER
 
 function_body: statement | function_body statement
 	
-predefined: INCL_FUNC | ASCEND_FUNC | DESCEND_FUNC | TEMPERATURE_FUNC | ALTITUDE_FUNC 
-			| ACCELERATION_FUNC | CAMERA_FUNC | PHOTO_FUNC | TIME_FUNC | CONNECT_FUNC
+predefined: INCL_FUNC LP RP 
+			| ASCEND_FUNC LP DOUBLE_LITERAL RP
+			| ASCEND_FUNC LP IDENTIFIER RP
+			| DESCEND_FUNC LP DOUBLE_LITERAL RP
+			| DESCEND_FUNC LP IDENTIFIER RP
+			| TEMPERATURE_FUNC LP RP
+			| ALTITUDE_FUNC LP RP 
+			| ACCELERATION_FUNC LP RP 
+			| CAMERA_FUNC LP BOOL_LITERAL RP
+			| CAMERA_FUNC LP IDENTIFIER RP
+			| PHOTO_FUNC LP RP 
+			| TIME_FUNC LP RP 
+			| CONNECT_FUNC LP RP
 			
 declaration_statement: type identifiers 
 
@@ -173,13 +187,15 @@ type: INT_TYPE | DOUBLE_TYPE | BOOL_TYPE | STRING_TYPE
 #include "lex.yy.c"
 int line_no;
 int state = 0;
-int main (void){
-    yydebug=1;
-    yyparse();
-    if(state == 0){
-                printf("Parsing is successfully completed.\n");
-     }
-     return 0;
+int main (void) {
+	yyparse();
+    	if(state == 0) {
+        	printf("Parsing is successfully completed.\n");
+    	}
+	return 0;
 }
 
-void yyerror( char *s ) { state = -1; fprintf( stderr, "%d: %s\n",line_no+1,s); }
+void yyerror( char* s ) {
+	state = -1;
+	fprintf( stderr, "%d: %s\n",line_no+1,s);
+}

@@ -47,12 +47,10 @@ double_literal {sign}?{numeral}(\.)?{digit}+
 bool_literal {true}|{false}
 string_literal \"(\\.|[^"\\])*\"
 comment \#[^#]*\#
-literal {int_literal}|{double_literal}|{bool_literal}|{string_literal}
 type_int "int"
 type_double "double"
 type_bool "bool"
 type_string "string"
-type {type_int}|{type_double}|{type_bool}|{type_string}
 lowercase_let [a-z]
 uppercase_let [A-Z]
 letter {lowercase_let}|{uppercase_let}
